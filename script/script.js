@@ -13,6 +13,9 @@ const lists = document.querySelectorAll('.lists');
 const handFinger = document.querySelectorAll('#handFinger');
 const activeMembers = document.querySelector('.active-members');
 const activeNumber = document.querySelector('.counting-numbers');
+const showGetMemForm = document.querySelector('.get-mem-content');
+const getMemBtn = document.getElementById('getMem');
+const hideFingerPrint = document.querySelector('.submit-button');
 var randomNumbers = +activeNumber.getAttribute('data-number');
 
 var intervals1 = null , intervals2 = null, war=null, msg=null;
@@ -127,6 +130,16 @@ function stopFingerAnimation() {
     }
 }
 
+function getMemberShipForm() {
+    setTimeout(() => {
+        hideFingerPrint.style.display = 'none';
+        confe.classList.remove('active');
+        congressLogo.classList.remove('active');
+        showGetMemForm.classList.add('active')
+    }, 3000);
+}
+
+
 submit.addEventListener('click', function(e)  {
     e.preventDefault();
     const activeLists = document.querySelectorAll('.lists.active');
@@ -151,11 +164,29 @@ submit.addEventListener('click', function(e)  {
             msg = setTimeout(() => {
                 message.textContent="Indian National Congress"
                 stopFingerAnimation();
+                getMemberShipForm();
             },3000);
     }else{
         stopFingerAnimation();
         startFingerAnimation();
         alert("Please Select Any three Options");
     }
+})
+getMemBtn.addEventListener('click', function () {
+const nm = document.getElementById('nm');
+const ad = document.getElementById('ad');
+console.log('hello');
+if(nm.value == null || nm.value == ""){
+    alert('Please Fill Your Name');
+    nm.focus();
+    return
+}
+if(ad.value == null || ad.value == ""){
+    alert('Please Fill Your Adhaar Number');
+    ad.focus();
+    return
+}
+    window.location.reload();
+
 })
 
